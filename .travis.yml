@@ -1,0 +1,24 @@
+language: bash
+
+sudo: required
+
+services:
+  - docker
+
+## No tests so far
+#before_install:
+#  - sudo add-apt-repository ppa:duggan/bats --yes
+#  - sudo apt-get update -q
+#  - sudo apt-get install -q bats
+
+script:
+  - docker build -t scholzj/qpid-proton:travis .
+## No tests so far
+#  - bats tests.bats
+
+after_success:
+  - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
+  - docker tag scholzj/qpid-proton:travis docker.io/scholzj/qpid-proton:devel
+  - docker push docker.io/scholzj/qpid-proton:devel
+  #- docker tag -f scholzj/qpid-dispatch:travis docker.io/scholzj/qpid-dispatch:latest
+  #- docker push docker.io/scholzj/qpid-dispatch:latest
