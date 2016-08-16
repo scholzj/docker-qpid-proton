@@ -12,7 +12,7 @@ services:
 #  - sudo apt-get install -q bats
 
 script:
-  - docker build -t scholzj/qpid-proton:travis .
+  - docker build --build-arg XXX=aaa -t scholzj/qpid-proton:travis .
 ## No tests so far
 #  - bats tests.bats
 
