@@ -35,7 +35,7 @@ workflows:
   build-workflow:
     jobs:
       - build:
-          context: qpid-repos
+          context: docker-hub
   scheduled-workflow:
     triggers:
       - schedule:
