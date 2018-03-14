@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/scholzj/docker-qpid-proton.svg?branch=master)](https://travis-ci.org/scholzj/docker-qpid-proton)
+[![CircleCI](https://circleci.com/gh/scholzj/docker-qpid-proton.svg?style=shield)](https://circleci.com/gh/scholzj/docker-qpid-proton)
 
 # Apache Qpid Proton Docker image
 
