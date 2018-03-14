@@ -1,0 +1,48 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: docker:17.06.0-git
+    steps:
+      - setup_remote_docker
+      - checkout
+      - run:
+          name: Build Docker image
+          command: docker build -t scholzj/qpid-proton:travis .
+      - deploy:
+          name: Login to Docker
+          command: docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
+      - deploy:
+          name: Tag docker image
+          command: docker tag scholzj/qpid-proton:travis docker.io/scholzj/qpid-proton:devel
+      - deploy:
+          name: Build Docker image
+          command: docker push docker.io/scholzj/qpid-proton:devel
+      # - deploy:
+      #     name: Tag docker image
+      #     command: docker tag scholzj/qpid-proton:travis docker.io/scholzj/qpid-proton:0.21.0
+      # - deploy:
+      #     name: Build Docker image
+      #     command: docker push docker.io/scholzj/qpid-proton:0.21.0
+      # - deploy:
+      #     name: Build Docker image
+      #     command: docker docker tag -f scholzj/qpid-proton:travis docker.io/scholzj/qpid-proton:latest
+      # - deploy:
+      #     name: Build Docker image
+      #     command: push docker.io/scholzj/qpid-proton:latest
+workflows:
+  version: 2
+  build-workflow:
+    jobs:
+      - build:
+          context: qpid-repos
+  scheduled-workflow:
+    triggers:
+      - schedule:
+          cron: "21 0 * * *"
+          filters:
+            branches:
+              only: master
+    jobs:
+      - build:
+          context: qpid-repos
