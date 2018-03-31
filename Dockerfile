@@ -1,5 +1,5 @@
 FROM		centos:centos7
-MAINTAINER 	JAkub Scholz "www@scholzj.com"
+LABEL           maintainer="Jakub Scholz <www@scholzj.com>"
 
 USER root
 
