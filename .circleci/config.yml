@@ -14,16 +14,10 @@ jobs:
           command: docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
       - deploy:
           name: Tag docker image
-          command: docker tag scholzj/qpid-proton:travis docker.io/scholzj/qpid-proton:devel
+          command: docker tag scholzj/qpid-proton:travis docker.io/scholzj/qpid-proton:0.28.0-rc1
       - deploy:
           name: Push Docker image
-          command: docker push docker.io/scholzj/qpid-proton:devel
-      # - deploy:
-      #     name: Tag docker image
-      #     command: docker tag scholzj/qpid-proton:travis docker.io/scholzj/qpid-proton:0.21.0
-      # - deploy:
-      #     name: Push Docker image
-      #     command: docker push docker.io/scholzj/qpid-proton:0.21.0
+          command: docker push docker.io/scholzj/qpid-proton:0.28.0-rc1
       # - deploy:
       #     name: Tag Docker image
       #     command: docker tag scholzj/qpid-proton:travis docker.io/scholzj/qpid-proton:latest
